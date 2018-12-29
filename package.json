@@ -2,9 +2,9 @@
   "name": "style",
   "version": "0.0.0",
   "license": "MIT",
-  "homepage": "https://alouimohamedhabib.github.io/photo-searcher",
+  "homepage": "https://github.com/alouimohamedhabib/proxym_picture_search.git",
   "scripts": {
-    "deploy": "gh-pages -d dist",
+    "deploy": "npm run build   --base-href  /proxym-splash/ && gh-pages -d dist",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
