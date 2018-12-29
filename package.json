@@ -2,7 +2,9 @@
   "name": "style",
   "version": "0.0.0",
   "license": "MIT",
+  "homepage": "https://alouimohamedhabib.github.io/photo-searcher",
   "scripts": {
+    "deploy": "gh-pages -d dist",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
