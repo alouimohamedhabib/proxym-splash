@@ -1,0 +1,66 @@
+<nav class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <select class="mt-4 mb-4 custom-select custom-select-md mb-3">
+          <option selected>Selec the source</option>
+          <option value="unsplash">Unsplash</option>
+        </select>
+      </div>
+      <div class="col-6">
+        <form class="form-inline mt-4 mb-4" [formGroup]='SearchForm'>
+          <input class="form-control mr-sm-2" formControlName='keyword' type="search" [(ngModel)]="keyword">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="getResponse()">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12" *ngIf='images'>
+      <h2 *ngIf='images'>{{images.total}} Result(s) for: <ins>{{keyword}}</ins></h2>
+      {{images.results.total}}
+      <hr>
+    </div>
+    {{pagination | json}}
+    <div *ngIf='images'>
+      <div class="col-12" *ngIf="images.results.length === 0">
+        Sorry no results found for your request!
+      </div>
+    </div>
+    <div *ngIf='images' class="row">
+      <ng-container *ngFor='let image of images.results'>
+        <div class="col-md-3 mb-3 ">
+          <div class="card">
+            <img src="{{image.urls.small}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text"> {{image.description}}</p>
+              <footer class="blockquote-footer">
+                By {{image.user.username}}
+              </footer>
+              <p>
+                <small style="font-size: 10px; opacity: .5; font-style: italic" *ngFor='let tag of image.photo_tags'>
+                  {{tag.title}}
+                </small>
+              </p>
+              <a href="{{image.links.download}}" target="_blank" class="btn btn-primary">Download</a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <!-- pagination -->
+  </div>
+
+  <div *ngIf='images' class="row">
+    <nav class="col-12 text-center " *ngIf=" images.total > 2 ">
+      <ul class="pagination d-inline-flex">
+        <li class="page-item" *ngFor='let page of pagination'>
+          <a class="page-link" [class.currentitem]="currentPage == page" (click)="getResponse(page, $event)">{{page}}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
