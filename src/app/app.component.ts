@@ -30,10 +30,10 @@ export class AppComponent implements OnInit {
   }
 
   getResponse(page: Number = 1, event?): void {
-
     this.currentPage = page;
     this.serviceToCall.getData(this.keyword, page).subscribe(
       (response) => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         this.images = response;
         let currentPage = page;
         let pagiator = [];

@@ -24,34 +24,40 @@
       {{images.results.total}}
       <hr>
     </div>
+
     <div *ngIf='images'>
       <div class="col-12" *ngIf="images.results.length === 0">
         Sorry no results found for your request!
       </div>
     </div>
-    <div *ngIf='images' class="row">
-      <ng-container *ngFor='let image of images.results'>
-        <div class="col-md-3 mb-3 ">
-          <div class="card">
-            <img src="{{image.urls.small}}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <p class="card-text"> {{image.description}}</p>
-              <footer class="blockquote-footer">
-                By {{image.user.username}}
-              </footer>
-              <p>
-                <small style="font-size: 10px; opacity: .5; font-style: italic" *ngFor='let tag of image.photo_tags'>
-                  {{tag.title}}
-                </small>
-              </p>
-              <a href="{{image.links.download}}" target="_blank" class="btn btn-primary">Download</a>
-            </div>
-          </div>
-        </div>
-      </ng-container>
-    </div>
     <!-- pagination -->
   </div>
+
+
+  <!-- images loop  -->
+  <div *ngIf='images' class="row">
+    <ng-container *ngFor='let image of images.results'>
+      <div class="col-md-3 mb-3 ">
+        <div class="card">
+          <img src="{{image.urls.small}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text"> {{image.description}}</p>
+            <footer class="blockquote-footer">
+              By {{image.user.username}}
+            </footer>
+            <p>
+              <small style="font-size: 10px; opacity: .5; font-style: italic" *ngFor='let tag of image.photo_tags'>
+                {{tag.title}}
+              </small>
+            </p>
+            <a href="{{image.links.download}}" target="_blank" class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <!-- images loop  -->
+
 
   <div *ngIf='images' class="row">
     <nav class="col-12 text-center " *ngIf=" images.total > 2 ">
